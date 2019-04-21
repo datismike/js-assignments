@@ -54,7 +54,7 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    return (value1 + value2) / 2;
+    return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -228,7 +228,10 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+    if (!isNaN(value))
+	return +value;
+    else 
+	return def;
 }
 
 module.exports = {

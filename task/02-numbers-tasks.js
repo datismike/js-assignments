@@ -127,7 +127,8 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    throw new Error('Not implemented');
+    let str = value.toString();
+    return str[str.length - 1];
 }
 
 
@@ -143,7 +144,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-    throw new Error('Not implemented');
+    return +value;
 }
 
 /**
@@ -160,7 +161,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    throw new Error('Not implemented');
+    return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 /**
@@ -181,7 +182,8 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    throw new Error('Not implemented');
+    let t = 10 ** pow;
+    return Math.round(num / t) * t;
 }
 
 /**
@@ -202,7 +204,12 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-    throw new Error('Not implemented');
+    for (let i = 2; i < n; i++) {
+	   	if (n % i === 0) {
+	   		return false;
+	   	}
+	}
+	return true;
 }
 
 /**

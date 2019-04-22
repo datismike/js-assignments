@@ -141,7 +141,10 @@ function isTriangle(a,b,c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+        return !(rect2.left > rect1.width ||
+        rect2.width < rect1.left ||
+        rect2.top > rect1.height ||
+        rect2.height < rect1.top);
 }
 
 
@@ -172,7 +175,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    throw new Error('Not implemented');
+        return Math.pow(circle.center.x - point.x, 2) + Math.pow(circle.center.y - point.y, 2) < circle.radius * circle.radius;
 }
 
 
@@ -188,7 +191,16 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+        str = str.split('');
+        for (let i = 0; i < str.length; i++) {
+            let temp = str[i];
+            str[i] = '$';
+            if (str.indexOf(temp) < 0)
+                return temp;
+            else
+                str[i] = temp;
+        }
+        return null;
 }
 
 

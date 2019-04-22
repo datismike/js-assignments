@@ -226,7 +226,22 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+        let res = '';
+        if (isStartIncluded)
+            res += '[';
+        else
+            res += '(';
+    
+        if (a < b)
+            res += `${a}, ${b}`;
+        else
+            res += `${b}, ${a}`;
+
+        if (isEndIncluded)
+            res += ']';
+        else
+            res += ')';
+        return res;
 }
 
 
@@ -243,7 +258,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    return str.split('').reverse().join('');
 }
 
 
@@ -260,7 +275,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    return String(num).split('').reverse().join('');
 }
 
 
@@ -304,7 +319,16 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+        let res = [];
+        res = String(num).split('').reduce((prev, curr) => {
+            return (+prev) + (+curr);
+        });
+        while (res > 9){
+            res = String(res).split('').reduce((prev, curr) => {
+                return (+prev) + (+curr);
+            });
+        }
+        return res;
 }
 
 
@@ -390,7 +414,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return num.toString(n);
 }
 
 

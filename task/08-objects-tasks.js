@@ -42,7 +42,7 @@ Rectangle.prototype.getArea = function() {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-    throw new Error('Not implemented');
+    return JSON.stringify(obj);
 }
 
 
@@ -58,7 +58,9 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-    throw new Error('Not implemented');
+    let obj = JSON.parse(json);
+    obj.proto = proto;
+    return obj;
 }
 
 

@@ -401,7 +401,10 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-	let sum = arr[0];
+	if (arr.length > 0)
+		let sum = arr[0];
+	else
+		return 0;
 	for (let i = 1; i < arr.length; i++)
 		sum = sum + arr[i];
 	return sum;

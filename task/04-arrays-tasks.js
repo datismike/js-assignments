@@ -23,12 +23,7 @@
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
 function findElement(arr, value) {
-   for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === value) {
-              return value;
-        }
-   }
-    return -1;
+    return arr.findIndex(el => el === value);
 }
 
 /**
@@ -144,8 +139,8 @@ function getUpperCaseStrings(arr) {
  */
 function getStringsLength(arr) {
    for (let i = 0; i < arr.length; i++)
-		     arr[i] = arr[i].length;
-			return arr;
+       arr[i] = arr[i].length;
+   return arr;
 }
 
 /**
@@ -175,9 +170,9 @@ function insertItem(arr, item, index) {
  */
 function getHead(arr, n) {
    var resultArray = [];
-			for (let i = 0; i < n; i++)
-				resultArray.push(arr[i]);
-			return resultArray;
+   for (let i = 0; i < n; i++)
+	resultArray.push(arr[i]);
+   return resultArray;
 }
 
 
@@ -192,7 +187,7 @@ function getHead(arr, n) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-   throw new Error('Not implemented');
+	return arr.slice(arr.length - n);
 }
 
 

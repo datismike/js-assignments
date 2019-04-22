@@ -38,14 +38,14 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   		let arr = Array(len).fill(1);
-		   arr.reduce((sum, current, index) => {
-		       if (index > 0) {
-		           sum = arr[index - 1] + 2;
-		           arr[index] = sum;
-		       }
-		   });
-		   return arr;
+	let arr = Array(len).fill(1);
+	arr.reduce((sum, current, index) => {
+		if (index > 0) {
+			sum = arr[index - 1] + 2;
+		        arr[index] = sum;
+		}
+	});
+	return arr;
 }
 
 
@@ -61,7 +61,7 @@ function generateOdds(len) {
  *    [] => [] 
  */
 function doubleArray(arr) {
-   return arr.concat(arr);
+	return arr.concat(arr);
 }
 
 
@@ -77,7 +77,7 @@ function doubleArray(arr) {
  *    [] => [] 
  */
 function getArrayOfPositives(arr) {
-   return arr.filter(el => el > 0);
+	return arr.filter(el => el > 0);
 }
 
 /**
@@ -92,7 +92,7 @@ function getArrayOfPositives(arr) {
  *    [ 'cat, 'dog', 'raccon' ] => [ 'cat', 'dog', 'racoon' ]
  */
 function getArrayOfStrings(arr) {
-    return arr.filter(el => typeof el === 'string');
+	return arr.filter(el => typeof el === 'string');
 }
 
 /**
@@ -109,7 +109,7 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-    return arr.filter(el => el);
+	return arr.filter(el => el);
 }
 
 /**
@@ -123,7 +123,7 @@ function removeFalsyValues(arr) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-    return arr.map(el => el.toUpperCase());
+	return arr.map(el => el.toUpperCase());
 }
 
 
@@ -138,9 +138,7 @@ function getUpperCaseStrings(arr) {
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
-   for (let i = 0; i < arr.length; i++)
-       arr[i] = arr[i].length;
-   return arr;
+	return arr.map(el => el.length);
 }
 
 /**
@@ -155,7 +153,7 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(arr, item, index) {
-   return arr.splice(index, 0, item);
+	return arr.splice(index, 0, item);
 }
 
 /**
@@ -169,10 +167,7 @@ function insertItem(arr, item, index) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
 function getHead(arr, n) {
-   var resultArray = [];
-   for (let i = 0; i < n; i++)
-	resultArray.push(arr[i]);
-   return resultArray;
+	return arr.splice(0, n);
 }
 
 
@@ -227,7 +222,7 @@ function toCsvText(arr) {
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-   return arr.map(element => Math.pow(element, 2));
+	return arr.map(element => Math.pow(element, 2));
 }
 
 
@@ -246,13 +241,11 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-	var resultArray = [];
-	let sum = 0;
-	for (let i = 0; i < arr.length; i++) {
-		sum = sum + arr[i];
-		resultArray.push(sum);
-	}
-	return resultArray;
+	return arr.reduce((result, current, index) => {
+		const value = index > 0 ? result[index - 1] + current : current;
+        	result.push(value);
+        	return result;
+    	}, []);
 }
 
 /**
@@ -267,11 +260,12 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-	var resultArray = [];
-	for (let i = 0; i < arr.length; i++)
-		if (i % 2 === 1)
-			resultArray.push(arr[i]);
-	return resultArray;
+	const result = [];
+	arr.map((item, index) => {
+		if (index % 2 !== 0)
+			result.push(item)
+	});
+	return result
 }
 
 
@@ -290,11 +284,13 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-	var resultArray = [];
-	for (let i = 0; i < arr.length; i++)
-		for (let j = 0; j <= i; j++)
-			resultArray.push(arr[i]);
-	return resultArray;
+	let result = [];
+	arr.map((item, index) => {
+        	const elements = Array(index + 1).fill(item);
+        	const temp = [...result];
+        	result = [...temp, ...elements];
+    	});
+	return result;
 }
 
 
@@ -401,12 +397,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-	let sum = arr[0];
-	if (arr.length === 0)
-		sum = 0;
-	for (let i = 1; i < arr.length; i++)
-		sum = sum + arr[i];
-	return sum;
+	return arr.reduce((sum, current) => sum += current, 0);
 }
  
 /** 
@@ -422,11 +413,11 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-	let count = 0;
-	for (let i = 0; i < arr.length; i++)
-		if (!arr[i])
-			count++;
-	return count;
+	return arr.reduce((counter, current) => {
+        	if (!current)
+            		counter++;
+        	return counter;
+    	}, 0);
 }
 
 /**
@@ -444,11 +435,11 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-	let count = 0;
-	for (let i = 0; i < arr.length; i++)
-		if (arr[i] === item)
-			count++;
-	return count;
+	return arr.reduce((counter, current) => {
+        	if (current === item)
+            		counter++;
+        	return counter;
+    	}, 0)
 }
 
 /**
@@ -497,8 +488,10 @@ function sortCitiesArray(arr) {
             		if (a.city > b.city) return 1;
                 		else return -1;
             	}
-        	if(a.country > b.country)return 1;
-        	else return -1;
+        	if(a.country > b.country)
+			return 1;
+        	else
+			return -1;
     })
 }
 
@@ -538,12 +531,17 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-	var resultArray = [];
-	while (start <= end) {
-		resultArray.push(start);
-		start++;
-	}
-	return resultArray;
+	const length = end - start;
+    	const arr = Array(length + 1).fill(start);
+    	return arr.reduce((result, current, index) => {
+        	if (index > 0) {
+            		const value = result[index - 1] + 1;
+            		result.push(value);
+        	}
+		else
+            		result.push(current);
+        	return result;
+    	}, []);
 }
 
 /**
